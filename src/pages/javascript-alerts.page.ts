@@ -10,10 +10,10 @@ export class JavascriptAlertsPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.alertButton = page.getByRole('button', { name: 'Click for JS Alert' });
-        this.confirmButton = page.getByRole('button', { name: 'Click for JS Confirm' });
-        this.promptButton = page.getByRole('button', { name: 'Click for JS Prompt' });
-        this.resultMessage = page.locator('#result');
+        this.alertButton = page.getByRole("button", { name: "Click for JS Alert" });
+        this.confirmButton = page.getByRole("button", { name: "Click for JS Confirm" });
+        this.promptButton = page.getByRole("button", { name: "Click for JS Prompt" });
+        this.resultMessage = page.locator("#result");
     }
 
     async open() {
@@ -31,5 +31,4 @@ export class JavascriptAlertsPage {
     async openPrompt() {
         this.promptButton.click();
     }
-
 }
