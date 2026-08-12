@@ -1,4 +1,4 @@
-import { FileUploadPage } from "@pages/fileUpload.page";
+import { FileUploadPage } from "@pages/file-upload.page";
 import { FileDownloadPage } from "@pages/file-download.page";
 import { JavascriptAlertsPage } from "@pages/javascript-alerts.page";
 import { test as base, expect } from "@playwright/test";
