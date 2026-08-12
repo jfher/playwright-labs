@@ -9,3 +9,8 @@ blob-report/
 
 .vscode/
 .idea/
+
+test-data/downloads/*
+
+
+test-data/downloads/.gitkeep
