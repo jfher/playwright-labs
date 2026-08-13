@@ -3,12 +3,14 @@ import { FileDownloadPage } from "@pages/file-download.page";
 import { JavascriptAlertsPage } from "@pages/javascript-alerts.page";
 import { test as base, expect } from "@playwright/test";
 import { IframePage } from "@pages/iframe.page";
+import MultipleWindowsPage from "@pages/multiple-windows.page";
 
 type LabFixtures = {
     jsAlertsPage: JavascriptAlertsPage;
     fileUploadPage: FileUploadPage;
     fileDownloadPage: FileDownloadPage;
     iframePage: IframePage;
+    multipleWindowsPage: MultipleWindowsPage;
 };
 
 export const test = base.extend<LabFixtures>({
@@ -38,6 +40,13 @@ export const test = base.extend<LabFixtures>({
         await iframePage.open();
         await use(iframePage);
         await iframePage.page.close();
+    },
+
+    multipleWindowsPage: async ({ page }, use) => {
+        const multipleWindowsPage = new MultipleWindowsPage(page);
+        await multipleWindowsPage.open();
+        await use(multipleWindowsPage);
+        await multipleWindowsPage.page.close();
     }
 });
 
