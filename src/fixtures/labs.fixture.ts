@@ -5,6 +5,7 @@ import { test as base, expect } from "@playwright/test";
 import { BasicAuthPage } from "@pages/basic-auth.page";
 import { LoginPage } from "@pages/login.page";
 import { SecurePage } from "@pages/secure.page";
+import { StoragePage } from "@pages/storage.page";
 
 type LabFixtures = {
     jsAlertsPage: JavascriptAlertsPage;
@@ -13,6 +14,7 @@ type LabFixtures = {
     basicAuthPage: BasicAuthPage;
     loginPage: LoginPage;
     securePage: SecurePage;
+    storagePage: StoragePage;
 };
 
 export const test = base.extend<LabFixtures>({
@@ -54,6 +56,13 @@ export const test = base.extend<LabFixtures>({
     securePage: async ({ page }, use) => {
         const securePage = new SecurePage(page);
         await use(securePage);
+    },
+
+    storagePage: async ({ page }, use) => {
+        const storagePage = new StoragePage(page);
+        await storagePage.open();
+        await use(storagePage);
+        await storagePage.page.close();
     }
 });
 
