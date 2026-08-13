@@ -3,19 +3,19 @@ import path from 'path';
 
 test.describe('File Upload', () => {
     test('LAB-02-001 - should upload a file', async ({ fileUploadPage }) => {
-        const filePath = path.join(__dirname, '../../resources/example.txt');
+        const filePath = path.join(__dirname, '../../test-data/files/example.txt');
         await fileUploadPage.uploadFile(filePath);
         await expect(fileUploadPage.fileInput).toHaveValue(/example\.txt$/);
     });
 
     test('LAB-02-002 - should upload a file drag and dropping on the designed area', async ({ fileUploadPage }) => {
-        const filePath = path.join(__dirname, '../../resources/example.txt');
+        const filePath = path.join(__dirname, '../../test-data/files/example.txt');
         await fileUploadPage.uploadFileDnD(filePath);
         await expect(await fileUploadPage.uploadedDnDFiles.innerText()).toContain('example.txt');
     });
 
     test('LAB-02-003 - should upload a file and submit', async ({ fileUploadPage }) => {
-        const filePath = path.join(__dirname, '../../resources/example.txt');
+        const filePath = path.join(__dirname, '../../test-data/files/example.txt');
         await fileUploadPage.uploadFile(filePath);
         await expect(fileUploadPage.fileInput).toHaveValue(/example\.txt$/);
         await fileUploadPage.submitFile();

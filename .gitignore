@@ -12,5 +12,5 @@ blob-report/
 
 test-data/downloads/*
 
-
 test-data/downloads/.gitkeep
+playwright/.auth/*

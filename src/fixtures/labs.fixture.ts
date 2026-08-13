@@ -4,6 +4,10 @@ import { JavascriptAlertsPage } from "@pages/javascript-alerts.page";
 import { test as base, expect } from "@playwright/test";
 import { IframePage } from "@pages/iframe.page";
 import MultipleWindowsPage from "@pages/multiple-windows.page";
+import { BasicAuthPage } from "@pages/basic-auth.page";
+import { LoginPage } from "@pages/login.page";
+import { SecurePage } from "@pages/secure.page";
+import { StoragePage } from "@pages/storage.page";
 
 type LabFixtures = {
     jsAlertsPage: JavascriptAlertsPage;
@@ -11,6 +15,10 @@ type LabFixtures = {
     fileDownloadPage: FileDownloadPage;
     iframePage: IframePage;
     multipleWindowsPage: MultipleWindowsPage;
+    basicAuthPage: BasicAuthPage;
+    loginPage: LoginPage;
+    securePage: SecurePage;
+    storagePage: StoragePage;
 };
 
 export const test = base.extend<LabFixtures>({
@@ -47,6 +55,32 @@ export const test = base.extend<LabFixtures>({
         await multipleWindowsPage.open();
         await use(multipleWindowsPage);
         await multipleWindowsPage.page.close();
+    },
+
+    basicAuthPage: async ({ page }, use) => {
+        const basicAuthPage = new BasicAuthPage(page);
+        await basicAuthPage.open();
+        await use(basicAuthPage);
+        await basicAuthPage.page.close();
+    },
+
+    loginPage: async ({ page }, use) => {
+        const loginPage = new LoginPage(page);
+        await loginPage.open();
+        await use(loginPage);
+        await loginPage.page.close();
+    },
+
+    securePage: async ({ page }, use) => {
+        const securePage = new SecurePage(page);
+        await use(securePage);
+    },
+
+    storagePage: async ({ page }, use) => {
+        const storagePage = new StoragePage(page);
+        await storagePage.open();
+        await use(storagePage);
+        await storagePage.page.close();
     }
 });
 
