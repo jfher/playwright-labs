@@ -1,10 +1,9 @@
-import { FrameLocator, Locator, Page } from "@playwright/test";
+import { FrameLocator, Locator, Page } from '@playwright/test';
 
 export class IframePage {
     readonly page: Page;
     readonly iframe: FrameLocator;
     readonly editor: Locator;
-
 
     constructor(page: Page) {
         this.page = page;
@@ -13,13 +12,12 @@ export class IframePage {
     }
 
     async open() {
-        await this.page.goto('/iframe')
+        await this.page.goto('/iframe');
     }
 
     async getEditorText(): Promise<string> {
         return (await this.editor.getByRole('paragraph').textContent()) ?? '';
     }
-
 
     async enableEditing(): Promise<void> {
         await this.editor.waitFor();

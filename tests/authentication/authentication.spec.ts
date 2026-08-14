@@ -26,9 +26,7 @@ test.describe('Authentication', () => {
         await context.close();
     });
 
-
     test('LAB-06-002 - should login successfully', async ({ loginPage, securePage }) => {
-
         await loginPage.login(usersAuth.USER.username, usersAuth.USER.password);
         await expect(securePage.logoutButton).toBeVisible();
 
@@ -42,10 +40,8 @@ test.describe('Authentication', () => {
 
         expect(cookies.length).toBeGreaterThan(0);
 
-        const authCookie = cookies.find(cookie => cookie.name === 'rack.session');
+        const authCookie = cookies.find((cookie) => cookie.name === 'rack.session');
 
         expect(authCookie).toBeDefined();
     });
 });
-
-

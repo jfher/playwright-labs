@@ -1,4 +1,4 @@
-import { Download, Locator, Page } from "@playwright/test";
+import { Download, Locator, Page } from '@playwright/test';
 
 export class FileDownloadPage {
     readonly page: Page;
@@ -16,18 +16,13 @@ export class FileDownloadPage {
     async downloadTargetFile(fileName: string): Promise<Download> {
         const link = this.page.getByRole('link', { name: fileName });
 
-        const [download] = await Promise.all([
-            this.page.waitForEvent('download'),
-            link.click(),
-        ]);
+        const [download] = await Promise.all([this.page.waitForEvent('download'), link.click()]);
 
         return download;
     }
 
     async getFirstDownloadFileName(): Promise<string> {
-        const fileName = await this.downloadLinks
-            .first()
-            .textContent();
+        const fileName = await this.downloadLinks.first().textContent();
 
         if (!fileName) {
             throw new Error('No download link was found.');

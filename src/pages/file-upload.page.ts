@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page } from '@playwright/test';
 
 export class FileUploadPage {
     readonly page: Page;
@@ -11,15 +11,15 @@ export class FileUploadPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.fileInput = page.locator("#file-upload");
-        this.fileDnDInput = page.locator("#drag-drop-upload");
-        this.uploadButton = page.locator("#file-submit");
-        this.uploadedFiles = page.locator("#uploaded-files");
-        this.uploadedDnDFiles = page.locator("span[data-dz-name]").first();
+        this.fileInput = page.locator('#file-upload');
+        this.fileDnDInput = page.locator('#drag-drop-upload');
+        this.uploadButton = page.locator('#file-submit');
+        this.uploadedFiles = page.locator('#uploaded-files');
+        this.uploadedDnDFiles = page.locator('span[data-dz-name]').first();
     }
 
     async open() {
-        this.page.goto('/upload')
+        this.page.goto('/upload');
     }
 
     async uploadFile(filePath: string) {

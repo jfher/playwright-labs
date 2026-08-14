@@ -9,6 +9,6 @@ setup('authenticate user', async ({ page }) => {
     await loginPage.open();
     await loginPage.login(usersAuth.USER.username, usersAuth.USER.password);
 
-    await page.context().storageState({ path: authFile, });
+    await page.context().storageState({ path: authFile });
     console.log('Auth file:', authFile);
 });

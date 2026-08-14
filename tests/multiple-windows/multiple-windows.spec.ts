@@ -1,4 +1,4 @@
-import { test, expect } from "@fixtures/labs.fixture"
+import { test, expect } from '@fixtures/labs.fixture';
 
 test.describe('Multiple Windows', () => {
     test('LAB-05-001 - should open a new page', async ({ page, multipleWindowsPage }) => {
@@ -31,10 +31,7 @@ test.describe('Multiple Windows', () => {
     test('LAB-05-005 - should contain two pages after opening a new window', async ({ context, multipleWindowsPage }) => {
         expect(context.pages()).toHaveLength(1);
 
-        await Promise.all([
-            context.waitForEvent('page'),
-            multipleWindowsPage.newWindow(),
-        ]);
+        await Promise.all([context.waitForEvent('page'), multipleWindowsPage.newWindow()]);
 
         expect(context.pages()).toHaveLength(2);
     });
@@ -46,4 +43,4 @@ test.describe('Multiple Windows', () => {
 
         await expect(page).toHaveURL(/\/windows$/);
     });
-})
+});

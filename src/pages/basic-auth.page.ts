@@ -1,7 +1,6 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator } from '@playwright/test';
 
 export class BasicAuthPage {
-
     readonly page: Page;
     readonly successMessage: Locator;
 
@@ -17,5 +16,4 @@ export class BasicAuthPage {
     async getContent(): Promise<string> {
         return (await this.successMessage.textContent()) ?? '';
     }
-
-};
+}

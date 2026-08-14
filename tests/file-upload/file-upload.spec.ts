@@ -26,7 +26,7 @@ test.describe('File Upload', () => {
         await fileUploadPage.fileInput.setInputFiles({
             name: 'file1.txt',
             mimeType: 'text/plain',
-            buffer: Buffer.from("Hey, this is the first file's content!")
+            buffer: Buffer.from("Hey, this is the first file's content!"),
         });
         await expect(fileUploadPage.fileInput).toHaveValue(/file1\.txt$/);
         await fileUploadPage.submitFile();
@@ -37,6 +37,5 @@ test.describe('File Upload', () => {
         await fileUploadPage.submitFile();
         await expect(page.getByRole('heading', { level: 1, name: 'Internal Server Error' })).toBeVisible();
         await expect(page.getByText('Internal Server Error')).toBeVisible();
-
     });
 });

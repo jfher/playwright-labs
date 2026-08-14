@@ -1,4 +1,4 @@
-import { test, expect } from "@fixtures/labs.fixture"
+import { test, expect } from '@fixtures/labs.fixture';
 
 test.describe('Iframe', () => {
     test('LAB-04-001 - should access content inside an iframe', async ({ iframePage }) => {
@@ -28,7 +28,6 @@ test.describe('Iframe', () => {
         expect(frame).not.toBeNull();
     });
 
-
     test('LAB-04-003.2 - should access the iframe using frame and a name', async ({ iframePage, page }) => {
         const frame = page.frame({
             name: 'mce_0_ifr',
@@ -37,11 +36,8 @@ test.describe('Iframe', () => {
         expect(frame).toBeTruthy();
     });
 
-
     test('LAB-04-003.3 - should access to the iframe using an url', async ({ iframePage, page }) => {
-        const frame = page.frames().find(
-            frame => frame.url().includes('the-internet.herokuapp.com'),
-        );
+        const frame = page.frames().find((frame) => frame.url().includes('the-internet.herokuapp.com'));
 
         expect(frame).toBeTruthy();
     });

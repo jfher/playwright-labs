@@ -1,13 +1,14 @@
-import { FileUploadPage } from "@pages/file-upload.page";
-import { FileDownloadPage } from "@pages/file-download.page";
-import { JavascriptAlertsPage } from "@pages/javascript-alerts.page";
-import { test as base, expect } from "@playwright/test";
-import { IframePage } from "@pages/iframe.page";
-import MultipleWindowsPage from "@pages/multiple-windows.page";
-import { BasicAuthPage } from "@pages/basic-auth.page";
-import { LoginPage } from "@pages/login.page";
-import { SecurePage } from "@pages/secure.page";
-import { StoragePage } from "@pages/storage.page";
+import { FileUploadPage } from '@pages/file-upload.page';
+import { FileDownloadPage } from '@pages/file-download.page';
+import { JavascriptAlertsPage } from '@pages/javascript-alerts.page';
+import { test as base, expect } from '@playwright/test';
+import { IframePage } from '@pages/iframe.page';
+import MultipleWindowsPage from '@pages/multiple-windows.page';
+import { BasicAuthPage } from '@pages/basic-auth.page';
+import { LoginPage } from '@pages/login.page';
+import { SecurePage } from '@pages/secure.page';
+import { StoragePage } from '@pages/storage.page';
+import { NetworkPage } from '@pages/network.page';
 
 type LabFixtures = {
     jsAlertsPage: JavascriptAlertsPage;
@@ -19,6 +20,7 @@ type LabFixtures = {
     loginPage: LoginPage;
     securePage: SecurePage;
     storagePage: StoragePage;
+    networkPage: NetworkPage;
 };
 
 export const test = base.extend<LabFixtures>({
@@ -81,7 +83,14 @@ export const test = base.extend<LabFixtures>({
         await storagePage.open();
         await use(storagePage);
         await storagePage.page.close();
-    }
+    },
+
+    networkPage: async ({ page }, use) => {
+        const networkPage = new NetworkPage(page);
+        await networkPage.open();
+        await use(networkPage);
+        await networkPage.page.close();
+    },
 });
 
 export { expect };

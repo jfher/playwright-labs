@@ -2,7 +2,6 @@ import { usersAuth } from '@data/usersAuth';
 import { test, expect } from '@fixtures/labs.fixture';
 
 test.describe('Browser Storage', () => {
-
     test('LAB-07-001 - should store a value in localStorage', async ({ storagePage }) => {
         await storagePage.setLocalStorage('testKey', 'testValue');
 
@@ -38,7 +37,7 @@ test.describe('Browser Storage', () => {
 
         const cookies = await context.cookies();
         expect(cookies.length).toBeGreaterThan(0);
-        expect(cookies.some(cookie => cookie.name === 'rack.session')).toBe(true);
+        expect(cookies.some((cookie) => cookie.name === 'rack.session')).toBe(true);
     });
 
     test('LAB-07-005 - should add a cookie to the browser context', async ({ context }) => {
@@ -52,10 +51,9 @@ test.describe('Browser Storage', () => {
 
         const cookies = await context.cookies();
 
-        const testCookie = cookies.find(cookie => cookie.name === 'testCookie');
+        const testCookie = cookies.find((cookie) => cookie.name === 'testCookie');
         expect(testCookie?.value).toBe('testValue');
     });
-
 
     test('LAB-07-006 - should clear cookies', async ({ context }) => {
         await context.addCookies([
@@ -66,11 +64,11 @@ test.describe('Browser Storage', () => {
             },
         ]);
 
-        expect((await context.cookies()).some(cookie => cookie.name === 'testCookie')).toBe(true);
+        expect((await context.cookies()).some((cookie) => cookie.name === 'testCookie')).toBe(true);
 
         await context.clearCookies();
 
-        expect((await context.cookies()).some(cookie => cookie.name === 'testCookie')).toBe(false);
+        expect((await context.cookies()).some((cookie) => cookie.name === 'testCookie')).toBe(false);
     });
 
     test('LAB-07-007 - should isolate cookies between browser contexts', async ({ browser }) => {
@@ -88,13 +86,12 @@ test.describe('Browser Storage', () => {
         const cookiesA = await contextA.cookies();
         const cookiesB = await contextB.cookies();
 
-        expect(cookiesA.some(cookie => cookie.name === 'user')).toBe(true);
-        expect(cookiesB.some(cookie => cookie.name === 'user')).toBe(false);
+        expect(cookiesA.some((cookie) => cookie.name === 'user')).toBe(true);
+        expect(cookiesB.some((cookie) => cookie.name === 'user')).toBe(false);
 
         await contextA.close();
         await contextB.close();
     });
-
 
     test('LAB-07-008 - should isolate localStorage between contexts', async ({ browser }) => {
         const contextA = await browser.newContext();
@@ -107,10 +104,7 @@ test.describe('Browser Storage', () => {
         await pageB.goto('/');
 
         await pageA.evaluate(() => {
-            localStorage.setItem(
-                'user',
-                'userA',
-            );
+            localStorage.setItem('user', 'userA');
         });
 
         const valueA = await pageA.evaluate(() => {
