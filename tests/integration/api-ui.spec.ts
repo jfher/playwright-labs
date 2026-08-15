@@ -1,8 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@fixtures/labs.fixture';
 import { BookingPage } from '@pages/booking.page';
 import { createBooking, generateBookingData } from '@utils/booking-api';
 import { loginAuth } from '@utils/auth-api';
 import { Environment } from '@config/Environment';
+import { STATUS_CODES } from '@data/api';
 
 //* Disable security and CORS
 test.use({
@@ -12,8 +13,7 @@ test.use({
 })
 
 test.describe('API + UI Integration', () => {
-    test('LAB-10-001 - should create booking through API and find it through UI', async ({ request, page }) => {
-        const bookingPage = new BookingPage(page);
+    test('LAB-10-001 - should create booking through API and find it through UI', async ({ request, bookingPage }) => {
 
         const bookingData = {
             firstname: 'Marcos',
@@ -34,25 +34,20 @@ test.describe('API + UI Integration', () => {
             },
         );
 
-        expect(createResponse.status()).toBe(200);
+        expect(createResponse.status()).toBe(STATUS_CODES.OK);
 
         const createBody = await createResponse.json();
-
         const bookingId = createBody.bookingid;
-
         expect(bookingId).toBeDefined();
 
         await bookingPage.open();
-
         await bookingPage.searchBooking(
             bookingId,
         );
-
         await expect(bookingPage.bookingResult).toHaveText('Marcos QA');
     });
 
-    test('LAB-10-002 - should use API for test data setup', async ({ request, page }) => {
-        const bookingPage = new BookingPage(page);
+    test('LAB-10-002 - should use API for test data setup', async ({ request, bookingPage }) => {
         const bookingId = await createBooking(request, generateBookingData());
 
         await bookingPage.open();
@@ -63,8 +58,7 @@ test.describe('API + UI Integration', () => {
         await expect(bookingPage.bookingResult).toHaveText('Marcos QA');
     });
 
-    test('LAB-10-003 - should verify UI data through API', async ({ request, page }) => {
-        const bookingPage = new BookingPage(page);
+    test('LAB-10-003 - should verify UI data through API', async ({ request, bookingPage }) => {
 
         const bookingId = await createBooking(request, generateBookingData({ firstname: 'Marcus', lastname: 'Verification' }));
         await bookingPage.open();
@@ -79,7 +73,7 @@ test.describe('API + UI Integration', () => {
             `${Environment.RESTFUL_BOOKER_BASE_URL}/booking/${bookingId}`,
         );
 
-        expect(apiResponse.status()).toBe(200);
+        expect(apiResponse.status()).toBe(STATUS_CODES.OK);
 
         const apiBooking = await apiResponse.json();
 
@@ -87,8 +81,7 @@ test.describe('API + UI Integration', () => {
         expect(apiBooking.lastname).toBe('Verification');
     });
 
-    test('LAB-10-004 - should clean test data through API', async ({ request, page }) => {
-        const bookingPage = new BookingPage(page);
+    test('LAB-10-004 - should clean test data through API', async ({ request, bookingPage }) => {
 
         const bookingId = await createBooking(request, generateBookingData({ firstname: 'Marcus', lastname: 'Cleanup' }));
 
@@ -112,7 +105,7 @@ test.describe('API + UI Integration', () => {
                 },
             );
 
-            expect([201, 404]).toContain(deleteResponse.status());
+            expect([STATUS_CODES.CREATED, STATUS_CODES.NOT_FOUND]).toContain(deleteResponse.status());
         }
     });
 
@@ -124,7 +117,7 @@ test.describe('API + UI Integration', () => {
             `${Environment.RESTFUL_BOOKER_BASE_URL}/booking/${bookingId}`,
         );
 
-        expect(getResponse.status()).toBe(200);
+        expect(getResponse.status()).toBe(STATUS_CODES.OK);
 
         const token = await loginAuth(request);
 
@@ -137,7 +130,7 @@ test.describe('API + UI Integration', () => {
                 data: generateBookingData({ firstname: 'Marcus Updated' })
             },
         );
-        expect(updateResponse.status()).toBe(200);
+        expect(updateResponse.status()).toBe(STATUS_CODES.OK);
 
         const updatedBooking = await updateResponse.json();
         expect(updatedBooking.firstname).toBe('Marcus Updated');
@@ -150,12 +143,12 @@ test.describe('API + UI Integration', () => {
                 },
             }
         );
-        expect(deleteResponse.status()).toBe(201);
+        expect(deleteResponse.status()).toBe(STATUS_CODES.CREATED);
 
         const finalResponse = await request.get(
             `${Environment.RESTFUL_BOOKER_BASE_URL}/booking/${bookingId}`,
         );
 
-        expect(finalResponse.status()).toBe(404);
+        expect(finalResponse.status()).toBe(STATUS_CODES.NOT_FOUND);
     });
 });

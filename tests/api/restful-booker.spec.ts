@@ -1,10 +1,11 @@
 import { Environment } from '@config/Environment';
 import { STATUS_CODES } from '@data/api';
+import { usersAuth } from '@data/usersAuth';
 import { test, expect } from '@playwright/test';
-import { login } from '@utils/auth';
-import { createBooking, updateBooking } from '@utils/bookingBuilder';
+import { loginAuth } from '@utils/auth-api';
+import { generateBookingData } from '@utils/booking-api';
 
-test.describe('RESTful Booker API', () => {
+test.describe('RESTFul Booker API', () => {
     const baseUrl = Environment.RESTFUL_BOOKER_BASE_URL;
 
     test('LAB-09-001 - should retrieve bookings', async ({ request }) => {
@@ -59,7 +60,7 @@ test.describe('RESTful Booker API', () => {
 
 
     test('LAB-09-006 - should create a booking', async ({ request }) => {
-        const booking = createBooking();
+        const booking = generateBookingData();
 
         const response = await request.post(
             `${baseUrl}/booking`,
@@ -83,7 +84,7 @@ test.describe('RESTful Booker API', () => {
         const createResponse = await request.post(
             `${baseUrl}/booking`,
             {
-                data: createBooking()
+                data: generateBookingData()
             },
         );
 
@@ -103,9 +104,9 @@ test.describe('RESTful Booker API', () => {
     });
 
     test('LAB-09-008 - should update a booking', async ({ request }) => {
-        const token = await login();
+        const token = await loginAuth(request);
         const createResponse = await request.post(`${baseUrl}/booking`, {
-            data: createBooking(),
+            data: generateBookingData(),
         });
 
         const createBody = await createResponse.json();
@@ -116,7 +117,7 @@ test.describe('RESTful Booker API', () => {
                 headers: {
                     Cookie: `token=${token}`,
                 },
-                data: updateBooking({ firstname: 'Marcos Updated', totalprice: 200 })
+                data: generateBookingData({ firstname: 'Marcos Updated', totalprice: 200 })
             },
         );
         expect(updateResponse.status()).toBe(STATUS_CODES.OK);
@@ -127,9 +128,9 @@ test.describe('RESTful Booker API', () => {
     });
 
     test('LAB-09-009 - should partially update a booking', async ({ request }) => {
-        const token = await login();
+        const token = await loginAuth(request);
         const createResponse = await request.post(`${baseUrl}/booking`, {
-            data: createBooking(),
+            data: generateBookingData(),
         });
 
         const createBody = await createResponse.json();
@@ -153,9 +154,9 @@ test.describe('RESTful Booker API', () => {
     });
 
     test('LAB-09-010 - should delete a booking', async ({ request }) => {
-        const token = await login();
+        const token = await loginAuth(request);
         const createResponse = await request.post(`${baseUrl}/booking`, {
-            data: createBooking(),
+            data: generateBookingData(),
         });
 
         const createBody = await createResponse.json();
@@ -179,8 +180,8 @@ test.describe('RESTful Booker API', () => {
             `${baseUrl}/auth`,
             {
                 data: {
-                    username: 'admin',
-                    password: 'password123',
+                    username: usersAuth.RESTFUL_USER.username,
+                    password: usersAuth.RESTFUL_USER.password,
                 },
             },
         );

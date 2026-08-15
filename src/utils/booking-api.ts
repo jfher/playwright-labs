@@ -1,3 +1,4 @@
+import { STATUS_CODES } from '@data/api';
 import { APIRequestContext } from '@playwright/test';
 
 export interface BookingData {
@@ -34,7 +35,7 @@ export async function createBooking(request: APIRequestContext, booking: Booking
         },
     );
 
-    if (response.status() !== 200) {
+    if (response.status() !== STATUS_CODES.OK) {
         throw new Error(
             `Booking creation failed. Status: ${response.status()}`,
         );

@@ -9,6 +9,7 @@ import { LoginPage } from '@pages/login.page';
 import { SecurePage } from '@pages/secure.page';
 import { StoragePage } from '@pages/storage.page';
 import { NetworkPage } from '@pages/network.page';
+import { BookingPage } from '@pages/booking.page';
 
 type LabFixtures = {
     jsAlertsPage: JavascriptAlertsPage;
@@ -21,6 +22,7 @@ type LabFixtures = {
     securePage: SecurePage;
     storagePage: StoragePage;
     networkPage: NetworkPage;
+    bookingPage: BookingPage;
 };
 
 export const test = base.extend<LabFixtures>({
@@ -90,6 +92,13 @@ export const test = base.extend<LabFixtures>({
         await networkPage.open();
         await use(networkPage);
         await networkPage.page.close();
+    },
+
+    bookingPage: async ({ page }, use) => {
+        const bookingPage = new BookingPage(page);
+        await bookingPage.open();
+        await use(bookingPage);
+        await bookingPage.page.close();
     },
 });
 
