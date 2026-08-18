@@ -16,8 +16,9 @@
             "@components/*": ["src/components/*"],
             "@flows/*": ["src/flows/*"],
             "@fixtures/*": ["src/fixtures/*"],
+            "@factories/*": ["src/factories/*"],
             "@utils/*": ["src/utils/*"],
-            "@test-data/*": ["src/test-data/*"],
+            "@test-data/*": ["test-data/*"],
             "@data/*": ["src/constants/*"]
         }
     },
