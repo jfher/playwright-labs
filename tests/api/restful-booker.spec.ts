@@ -43,14 +43,11 @@ test.describe('RESTFul Booker API', () => {
     });
 
     test('LAB-09-005 - should filter bookings by firstname', async ({ request }) => {
-        const response = await request.get(
-            `${baseUrl}/booking`,
-            {
-                params: {
-                    firstname: 'Susan',
-                },
+        const response = await request.get(`${baseUrl}/booking`, {
+            params: {
+                firstname: 'Susan',
             },
-        );
+        });
 
         expect(response.status()).toBe(STATUS_CODES.OK);
         const body = await response.json();
@@ -58,16 +55,12 @@ test.describe('RESTFul Booker API', () => {
         expect(Array.isArray(body)).toBe(true);
     });
 
-
     test('LAB-09-006 - should create a booking', async ({ request }) => {
         const booking = generateBookingData();
 
-        const response = await request.post(
-            `${baseUrl}/booking`,
-            {
-                data: booking,
-            },
-        );
+        const response = await request.post(`${baseUrl}/booking`, {
+            data: booking,
+        });
 
         expect(response.status()).toBe(STATUS_CODES.OK);
         const body = await response.json();
@@ -79,14 +72,10 @@ test.describe('RESTFul Booker API', () => {
         expect(body.booking.lastname).toBe(booking.lastname);
     });
 
-
     test('LAB-09-007 - should create and retrieve a booking', async ({ request }) => {
-        const createResponse = await request.post(
-            `${baseUrl}/booking`,
-            {
-                data: generateBookingData()
-            },
-        );
+        const createResponse = await request.post(`${baseUrl}/booking`, {
+            data: generateBookingData(),
+        });
 
         expect(createResponse.status()).toBe(STATUS_CODES.OK);
         const createBody = await createResponse.json();
@@ -112,14 +101,12 @@ test.describe('RESTFul Booker API', () => {
         const createBody = await createResponse.json();
         const bookingId = createBody.bookingid;
 
-        const updateResponse = await request.put(`${baseUrl}/booking/${bookingId}`,
-            {
-                headers: {
-                    Cookie: `token=${token}`,
-                },
-                data: generateBookingData({ firstname: 'Marcos Updated', totalprice: 200 })
+        const updateResponse = await request.put(`${baseUrl}/booking/${bookingId}`, {
+            headers: {
+                Cookie: `token=${token}`,
             },
-        );
+            data: generateBookingData({ firstname: 'Marcos Updated', totalprice: 200 }),
+        });
         expect(updateResponse.status()).toBe(STATUS_CODES.OK);
 
         const updatedBooking = await updateResponse.json();
@@ -136,17 +123,14 @@ test.describe('RESTFul Booker API', () => {
         const createBody = await createResponse.json();
         const bookingId = createBody.bookingid;
 
-        const patchResponse = await request.patch(
-            `${baseUrl}/booking/${bookingId}`,
-            {
-                headers: {
-                    Cookie: `token=${token}`,
-                },
-                data: {
-                    firstname: 'Partial Update',
-                },
+        const patchResponse = await request.patch(`${baseUrl}/booking/${bookingId}`, {
+            headers: {
+                Cookie: `token=${token}`,
             },
-        );
+            data: {
+                firstname: 'Partial Update',
+            },
+        });
 
         expect(patchResponse.status()).toBe(STATUS_CODES.OK);
         const booking = await patchResponse.json();
@@ -162,12 +146,9 @@ test.describe('RESTFul Booker API', () => {
         const createBody = await createResponse.json();
         const bookingId = createBody.bookingid;
 
-        const deleteResponse = await request.delete(
-            `${baseUrl}/booking/${bookingId}`,
-            {
-                headers: { Cookie: `token=${token}` },
-            }
-        );
+        const deleteResponse = await request.delete(`${baseUrl}/booking/${bookingId}`, {
+            headers: { Cookie: `token=${token}` },
+        });
 
         expect(deleteResponse.status()).toBe(STATUS_CODES.CREATED);
         const getResponse = await request.get(`${baseUrl}/booking/${bookingId}`);
@@ -176,15 +157,12 @@ test.describe('RESTFul Booker API', () => {
     });
 
     test('LAB-09-011 - should authenticate successfully', async ({ request }) => {
-        const response = await request.post(
-            `${baseUrl}/auth`,
-            {
-                data: {
-                    username: usersAuth.RESTFUL_USER.username,
-                    password: usersAuth.RESTFUL_USER.password,
-                },
+        const response = await request.post(`${baseUrl}/auth`, {
+            data: {
+                username: usersAuth.RESTFUL_USER.username,
+                password: usersAuth.RESTFUL_USER.password,
             },
-        );
+        });
 
         expect(response.status()).toBe(STATUS_CODES.OK);
 

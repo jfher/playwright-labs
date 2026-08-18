@@ -28,17 +28,12 @@ export function generateBookingData(data?: Partial<BookingData>): BookingData {
 }
 
 export async function createBooking(request: APIRequestContext, booking: BookingData): Promise<number> {
-    const response = await request.post(
-        'https://restful-booker.herokuapp.com/booking',
-        {
-            data: booking,
-        },
-    );
+    const response = await request.post('https://restful-booker.herokuapp.com/booking', {
+        data: booking,
+    });
 
     if (response.status() !== STATUS_CODES.OK) {
-        throw new Error(
-            `Booking creation failed. Status: ${response.status()}`,
-        );
+        throw new Error(`Booking creation failed. Status: ${response.status()}`);
     }
 
     const body = await response.json();

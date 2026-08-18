@@ -101,10 +101,10 @@ export class BookingPage {
     }
 
     async getBookingResult(): Promise<string> {
-        return ((await this.bookingResult.textContent()) ?? '');
+        return (await this.bookingResult.textContent()) ?? '';
     }
 
     async getErrorMessage(): Promise<string> {
-        return ((await this.errorMessage.textContent()) ?? '');
+        return (await this.errorMessage.textContent()) ?? '';
     }
 }

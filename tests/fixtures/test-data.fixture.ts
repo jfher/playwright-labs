@@ -6,7 +6,7 @@ type TestFixtures = {
 };
 
 export const test = base.extend<TestFixtures>({
-    user: async ({ }, use) => {
+    user: async ({}, use) => {
         const user = createUser();
         await use(user);
     },

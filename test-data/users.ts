@@ -22,7 +22,6 @@ export const users = [
     },
 ];
 
-
 export const registrationCasesNoParametrized = [
     {
         name: 'Mario',

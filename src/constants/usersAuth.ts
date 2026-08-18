@@ -1,4 +1,4 @@
-import { Environment } from "@config/Environment";
+import { Environment } from '@config/Environment';
 
 export const usersAuth = {
     ADMIN: {

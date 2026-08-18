@@ -7,7 +7,6 @@ export type User = {
 };
 
 export function createUser(overrides: Partial<User> = {}): User {
-
     const id = randomUUID();
 
     return {

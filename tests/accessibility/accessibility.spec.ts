@@ -69,7 +69,6 @@ test.describe('Accessibility Testing', () => {
         expect(results.violations.length).toBeGreaterThan(0);
     });
 
-
     test('LAB-12-003 - should provide useful accessibility violation details', async ({ page }) => {
         await page.setContent(`
         <html lang="en">
@@ -142,12 +141,7 @@ test.describe('Accessibility Testing', () => {
             page,
         }).analyze();
 
-        const blockingViolations =
-            results.violations.filter(
-                (violation) =>
-                    violation.impact === 'critical' ||
-                    violation.impact === 'serious',
-            );
+        const blockingViolations = results.violations.filter((violation) => violation.impact === 'critical' || violation.impact === 'serious');
 
         expect(blockingViolations).toEqual([]);
     });
@@ -199,7 +193,6 @@ test.describe('Accessibility Testing', () => {
         expect(results.violations).toEqual([]);
     });
 
-
     test('LAB-12-006 - should validate button accessibility', async ({ page }) => {
         await page.setContent(`
         <html lang="en">
@@ -220,14 +213,11 @@ test.describe('Accessibility Testing', () => {
         const results = await new AxeBuilder({
             page,
         })
-            .withRules([
-                'button-name',
-            ])
+            .withRules(['button-name'])
             .analyze();
 
         expect(results.violations).toEqual([]);
     });
-
 
     test('LAB-12-007 - should validate functionality and accessibility', async ({ page }) => {
         await page.setContent(`
@@ -268,7 +258,6 @@ test.describe('Accessibility Testing', () => {
 
         expect(results.violations).toEqual([]);
     });
-
 
     test('LAB-12-008 - should allow keyboard navigation to the search button', async ({ page }) => {
         await page.setContent(`

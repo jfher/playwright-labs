@@ -39,9 +39,7 @@ test.describe('Visual Regression Testing', () => {
             </html>
         `);
 
-        await expect(page).toHaveScreenshot(
-            'booking-search-page.png',
-        );
+        await expect(page).toHaveScreenshot('booking-search-page.png');
     });
 
     test('LAB-11-002 - should match the booking card screenshot', async ({ page }) => {
@@ -85,10 +83,7 @@ test.describe('Visual Regression Testing', () => {
 
         const card = page.locator('.card');
 
-        await expect(card).toHaveScreenshot(
-            'booking-card.png',
-        );
-
+        await expect(card).toHaveScreenshot('booking-card.png');
 
         //* To disable animations to avoid snapshot failures
         // await expect(page).toHaveScreenshot(
@@ -119,20 +114,14 @@ test.describe('Visual Regression Testing', () => {
         </div>
     `);
 
-        await expect(page).toHaveScreenshot(
-            'tolerant-page.png',
-            {
-                animations: 'disabled',
-                maxDiffPixels: 20,
-            },
-        );
+        await expect(page).toHaveScreenshot('tolerant-page.png', {
+            animations: 'disabled',
+            maxDiffPixels: 20,
+        });
 
-        await expect(page).toHaveScreenshot(
-            'tolerant-page.png',
-            {
-                stylePath: 'tests/visual/hide-dynamic.css',
-            },
-        );
+        await expect(page).toHaveScreenshot('tolerant-page.png', {
+            stylePath: 'tests/visual/hide-dynamic.css',
+        });
     });
 
     test('LAB-11-004 - should validate both behavior and appearance', async ({ page }) => {
@@ -146,13 +135,9 @@ test.describe('Visual Regression Testing', () => {
 
         await expect(button).toBeVisible();
 
-        await expect(button).toHaveText(
-            'Search Booking',
-        );
+        await expect(button).toHaveText('Search Booking');
 
-        await expect(button).toHaveScreenshot(
-            'search-button.png',
-        );
+        await expect(button).toHaveScreenshot('search-button.png');
     });
 
     test('LAB-11-005 - should validate button visual states', async ({ page }) => {
@@ -170,14 +155,10 @@ test.describe('Visual Regression Testing', () => {
 
         const button = page.locator('#search');
 
-        await expect(button).toHaveScreenshot(
-            'search-button-default.png',
-        );
+        await expect(button).toHaveScreenshot('search-button-default.png');
 
         await button.hover();
 
-        await expect(button).toHaveScreenshot(
-            'search-button-hover.png',
-        );
+        await expect(button).toHaveScreenshot('search-button-hover.png');
     });
 });

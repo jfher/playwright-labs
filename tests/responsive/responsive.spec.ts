@@ -2,9 +2,7 @@ import { test, expect, devices } from '@playwright/test';
 import { loadResponsivePage } from '@utils/responsive-mocked-page';
 
 test.describe('Responsive Page Tests', () => {
-    test('LAB-14-001 - should display desktop navigation', async ({
-        page,
-    }) => {
+    test('LAB-14-001 - should display desktop navigation', async ({ page }) => {
         await page.setViewportSize({
             width: 1280,
             height: 720,
@@ -68,9 +66,7 @@ test.describe('Responsive Page Tests', () => {
 
         await loadResponsivePage(page);
 
-        await expect(
-            page.locator('#menu-button'),
-        ).toBeVisible();
+        await expect(page.locator('#menu-button')).toBeVisible();
 
         await page.setViewportSize({
             width: 769,
@@ -89,14 +85,11 @@ test.describe('Responsive Page Tests', () => {
 
         await loadResponsivePage(page);
 
-        await expect(page).toHaveScreenshot(
-            'booking-mobile.png',
-            {
-                fullPage: true,
-            },
-        );
+        await expect(page).toHaveScreenshot('booking-mobile.png', {
+            fullPage: true,
+        });
     });
-})
+});
 
 test.use({
     ...devices['iPhone 13'],

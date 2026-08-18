@@ -20,4 +20,5 @@ export const Environment = {
     EXPECT_TIMEOUT: Number(getEnv('EXPECT_TIMEOUT')),
     RESTFUL_USERNAME: getEnv('RESTFUL_USERNAME'),
     RESTFUL_PASSWORD: getEnv('RESTFUL_PASSWORD'),
+    PERFORMANCE_BUDGET_MS: Number(getEnv('PERFORMANCE_BUDGET_MS') ?? 5000),
 };

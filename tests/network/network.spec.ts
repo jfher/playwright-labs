@@ -1,10 +1,9 @@
 // import { test, expect } from '@fixtures/labs.fixture';
 
-import { NetworkPage } from "@pages/network.page";
-import { test, expect } from "@playwright/test";
+import { NetworkPage } from '@pages/network.page';
+import { test, expect } from '@playwright/test';
 
 test.describe('Network', () => {
-
     test('LAB-08-001 - should intercept a network request', async ({ page }) => {
         const networkPage = new NetworkPage(page);
         let requestUrl = '';
@@ -89,7 +88,6 @@ test.describe('Network', () => {
     });
 
     test('LAB-08-006 - should modify request headers', async ({ page }) => {
-
         const networkPage = new NetworkPage(page);
         let receivedHeader = '';
 
@@ -108,8 +106,6 @@ test.describe('Network', () => {
 
         await networkPage.open();
 
-        await expect
-            .poll(() => receivedHeader)
-            .toBe('qa-automation');
+        await expect.poll(() => receivedHeader).toBe('qa-automation');
     });
 });

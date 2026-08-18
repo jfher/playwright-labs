@@ -3,4 +3,4 @@ export const STATUS_CODES = {
     CREATED: 201,
     UPDATED: 204,
     NOT_FOUND: 404,
-}
+};
