@@ -1,50 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LAB-17 - Custom Fixtures</title>
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <title>LAB-17 - Custom Fixtures</title>
+    </head>
 
-<body>
+    <body>
+        <h1>Login</h1>
 
-    <h1>Login</h1>
+        <form id="login-form">
+            <label for="username">Username</label>
+            <input id="username" type="text" />
 
-    <form id="login-form">
+            <label for="password">Password</label>
+            <input id="password" type="password" />
 
-        <label for="username">Username</label>
-        <input id="username" type="text">
+            <button id="login-button" type="submit">Login</button>
+        </form>
 
-        <label for="password">Password</label>
-        <input id="password" type="password">
+        <p id="message"></p>
 
-        <button id="login-button" type="submit">
-            Login
-        </button>
+        <script>
+            const form = document.querySelector('#login-form');
+            const message = document.querySelector('#message');
 
-    </form>
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
 
-    <p id="message"></p>
+                const username = document.querySelector('#username').value;
 
-    <script>
-        const form = document.querySelector('#login-form');
-        const message = document.querySelector('#message');
+                const password = document.querySelector('#password').value;
 
-        form.addEventListener('submit', event => {
-            event.preventDefault();
-
-            const username =
-                document.querySelector('#username').value;
-
-            const password =
-                document.querySelector('#password').value;
-
-            if (username === 'admin' && password === '1234') {
-                message.textContent = 'Login successful';
-            } else {
-                message.textContent = 'Invalid credentials';
-            }
-        });
-    </script>
-
-</body>
+                if (username === 'admin' && password === '1234') {
+                    message.textContent = 'Login successful';
+                } else {
+                    message.textContent = 'Invalid credentials';
+                }
+            });
+        </script>
+    </body>
 </html>

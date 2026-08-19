@@ -1,4 +1,5 @@
 import { type Locator, type Page } from '@playwright/test';
+import path from 'path';
 
 export class LoginFixturePage {
     readonly page: Page;
@@ -20,5 +21,10 @@ export class LoginFixturePage {
         await this.usernameInput.fill(username);
         await this.passwordInput.fill(password);
         await this.loginButton.click();
+    }
+
+    async open() {
+        const filePath = path.resolve(__dirname, './lab-pages/login-fixture.html');
+        await this.page.goto(`file://${filePath}`);
     }
 }
