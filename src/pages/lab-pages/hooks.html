@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>LAB-20 - Hooks</title>
+    </head>
+
+    <body>
+        <h1 id="page-title">Hooks Lab</h1>
+
+        <input id="username" type="text" placeholder="Username" />
+
+        <button id="save-button">Save</button>
+
+        <p id="message"></p>
+
+        <script>
+            const input = document.querySelector('#username');
+            const button = document.querySelector('#save-button');
+            const message = document.querySelector('#message');
+
+            button.addEventListener('click', () => {
+                if (input.value.trim()) {
+                    message.textContent = `Saved: ${input.value}`;
+                } else {
+                    message.textContent = 'Username is required';
+                }
+            });
+        </script>
+    </body>
+</html>
