@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LAB-17 - Custom Fixtures</title>
+</head>
+
+<body>
+
+    <h1>Login</h1>
+
+    <form id="login-form">
+
+        <label for="username">Username</label>
+        <input id="username" type="text">
+
+        <label for="password">Password</label>
+        <input id="password" type="password">
+
+        <button id="login-button" type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        const form = document.querySelector('#login-form');
+        const message = document.querySelector('#message');
+
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+
+            const username =
+                document.querySelector('#username').value;
+
+            const password =
+                document.querySelector('#password').value;
+
+            if (username === 'admin' && password === '1234') {
+                message.textContent = 'Login successful';
+            } else {
+                message.textContent = 'Invalid credentials';
+            }
+        });
+    </script>
+
+</body>
+</html>
