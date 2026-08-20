@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>LAB-21 - test.step()</title>
+    </head>
+
+    <body>
+        <h1 id="page-title">Shopping App</h1>
+
+        <section id="login-section">
+            <h2>Login</h2>
+
+            <input id="username" type="text" placeholder="Username" />
+
+            <input id="password" type="password" placeholder="Password" />
+
+            <button id="login-button">Login</button>
+        </section>
+
+        <section id="products-section" hidden>
+            <h2>Products</h2>
+
+            <button id="add-product">Add Product</button>
+
+            <button id="open-cart">Open Cart</button>
+        </section>
+
+        <section id="cart-section" hidden>
+            <h2>Cart</h2>
+
+            <p id="cart-status">Product in cart</p>
+
+            <button id="checkout">Checkout</button>
+        </section>
+
+        <section id="checkout-section" hidden>
+            <h2>Checkout</h2>
+
+            <button id="confirm-order">Confirm Order</button>
+
+            <p id="order-message"></p>
+        </section>
+
+        <script>
+            const loginButton = document.querySelector('#login-button');
+
+            const productsSection = document.querySelector('#products-section');
+
+            const loginSection = document.querySelector('#login-section');
+
+            const addProductButton = document.querySelector('#add-product');
+
+            const openCartButton = document.querySelector('#open-cart');
+
+            const cartSection = document.querySelector('#cart-section');
+
+            const checkoutButton = document.querySelector('#checkout');
+
+            const checkoutSection = document.querySelector('#checkout-section');
+
+            const confirmOrderButton = document.querySelector('#confirm-order');
+
+            const orderMessage = document.querySelector('#order-message');
+
+            loginButton.addEventListener('click', () => {
+                const username = document.querySelector('#username').value;
+
+                const password = document.querySelector('#password').value;
+
+                if (username === 'admin' && password === '1234') {
+                    loginSection.hidden = true;
+                    productsSection.hidden = false;
+                }
+            });
+
+            addProductButton.addEventListener('click', () => {
+                addProductButton.textContent = 'Product Added';
+            });
+
+            openCartButton.addEventListener('click', () => {
+                productsSection.hidden = true;
+                cartSection.hidden = false;
+            });
+
+            checkoutButton.addEventListener('click', () => {
+                cartSection.hidden = true;
+                checkoutSection.hidden = false;
+            });
+
+            confirmOrderButton.addEventListener('click', () => {
+                orderMessage.textContent = 'Order completed';
+            });
+        </script>
+    </body>
+</html>

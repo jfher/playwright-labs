@@ -47,7 +47,7 @@ test.describe('LAB-20 - Hooks', () => {
                 console.log('GROUP A');
             });
 
-            test('A1', async () => { });
+            test('A1', async () => {});
         });
     });
 
