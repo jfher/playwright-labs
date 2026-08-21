@@ -37,5 +37,18 @@ export default defineConfig({
             },
             dependencies: ['setup'],
         },
+        // TO practice running multiple projects
+        // {
+        //     name: 'chromium2',
+        //     use: {
+        //         browserName: 'chromium',
+        //     },
+        // },
+        // {
+        //     name: 'firefox',
+        //     use: {
+        //         browserName: 'firefox',
+        //     },
+        // },
     ],
 });
