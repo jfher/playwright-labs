@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>LAB-23 - Tags and Annotations</title>
+    </head>
+
+    <body>
+        <h1 id="title">Tags and Annotations Lab</h1>
+
+        <button id="login">Login</button>
+
+        <p id="message"></p>
+
+        <script>
+            document.querySelector('#login').addEventListener('click', () => {
+                document.querySelector('#message').textContent = 'Login successful';
+            });
+        </script>
+    </body>
+</html>
