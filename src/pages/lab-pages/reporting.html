@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>LAB-28 - Reporting</title>
+    </head>
+
+    <body>
+        <h1 id="title">Reporting Lab</h1>
+
+        <button id="success-button">Success</button>
+
+        <button id="failure-button">Failure</button>
+
+        <p id="message"></p>
+
+        <script>
+            document.querySelector('#success-button').addEventListener('click', () => {
+                document.querySelector('#message').textContent = 'Success';
+            });
+
+            document.querySelector('#failure-button').addEventListener('click', () => {
+                document.querySelector('#message').textContent = 'Failure';
+            });
+        </script>
+    </body>
+</html>

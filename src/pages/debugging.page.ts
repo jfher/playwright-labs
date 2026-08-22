@@ -22,10 +22,7 @@ export class DebuggingPage {
     }
 
     async open() {
-        const filePath = path.resolve(
-            __dirname,
-            '../../src/pages/lab-pages/debugging.html'
-        );
+        const filePath = path.resolve(__dirname, '../../src/pages/lab-pages/debugging.html');
 
         await this.page.goto(`file://${filePath}`);
     }
