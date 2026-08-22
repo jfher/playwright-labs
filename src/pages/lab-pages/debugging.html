@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LAB-27 - Trace Debugging</title>
+</head>
+
+<body>
+
+    <h1 id="title">
+        Debugging Lab
+    </h1>
+
+    <button id="load-data">
+        Load Data
+    </button>
+
+    <p id="status">
+        Ready
+    </p>
+
+    <p id="result"></p>
+
+    <script>
+        document
+            .querySelector('#load-data')
+            .addEventListener('click', () => {
+
+                document
+                    .querySelector('#status')
+                    .textContent = 'Loading...';
+
+                setTimeout(() => {
+
+                    document
+                        .querySelector('#status')
+                        .textContent = 'Loaded';
+
+                    document
+                        .querySelector('#result')
+                        .textContent = 'Data loaded successfully';
+
+                }, 1000);
+            });
+    </script>
+
+</body>
+
+</html>
